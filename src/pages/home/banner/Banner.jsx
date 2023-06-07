@@ -22,9 +22,9 @@ const Banner = () => {
         <SwiperSlide>
           <div>
             <img src="https://i.ibb.co/qgb2ZtD/Untitled-2-01.png" alt="" />
-            <div className="absolute z-10 text-white">
+            <div className="absolute z-10 top-1/2 left-32 text-2xl text-white">
               <h2 className="uppercase">We will teach you to</h2>
-              <h1 className="uppercase text-5xl text-white">Dance</h1>
+              <h1 className="uppercase text-7xl text-white">Dance</h1>
             </div>
           </div>
         </SwiperSlide>

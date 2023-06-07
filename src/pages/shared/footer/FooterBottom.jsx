@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const FooterBottom = () => {
   return (
     <div>
-      <footer className="footer footer-center p-10 bg-[#1C222F] text-[#929396] rounded">
+      <footer className="footer footer-center p-10 bg-[#1C222F] text-[#929396] rounded  ">
         <div>
           <h2 className="text-4xl text-[#EA6044] font-bold">Dance Studio</h2>
         </div>
