@@ -5,14 +5,14 @@ const AddClass = () => {
   const {
     register,
     handleSubmit,
-    // watch,
+    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div className="hero min-h-screen pt-16 bg-lime-950">
-      <div className="justify-self-center w-full max-w-xl pe-8">
+    <div className="hero min-h-screen py-16 bg-sky-700">
+      <div className="justify-self-center w-full max-w-xl px-2">
         <div>
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white">Add A Class</h1>
@@ -25,13 +25,14 @@ const AddClass = () => {
             <input
               className="input input-bordered"
               placeholder="Enter your class name"
-              {...register("example", { required: true })}
+              {...register("className", { required: true })}
             />
             <label className="label">
               <span className="label-text text-white text-sm">Class Image</span>
             </label>
             <input
-              className="input input-bordered"
+              type="file"
+              className="file-input file-input-bordered file-input-info"
               placeholder="Enter your class image"
               {...register("example", { required: true })}
             />
@@ -44,7 +45,7 @@ const AddClass = () => {
               className="input input-bordered"
               placeholder="Enter your email"
               type="text"
-              {...register("example", { required: true })}
+              {...register("instructorName", { required: true })}
             />
             <label className="label">
               <span className="label-text text-white text-sm">
@@ -55,18 +56,27 @@ const AddClass = () => {
               className="input input-bordered"
               placeholder="Enter your password"
               type="email"
-              {...register("exampleRequired", { required: true })}
+              {...register("instructorEmail", { required: true })}
             />
             <label className="label">
               <span className="label-text text-white text-sm">
-                Confirm Password
+                Available seats
               </span>
             </label>
             <input
               className="input input-bordered"
-              placeholder="Enter your password"
-              type="password"
-              {...register("exampleRequired", { required: true })}
+              placeholder="Available seats"
+              type="number"
+              {...register("seats", { required: true })}
+            />
+            <label className="label">
+              <span className="label-text text-white text-sm">Price</span>
+            </label>
+            <input
+              className="input input-bordered"
+              placeholder="Price"
+              type="number"
+              {...register("price", { required: true })}
             />
 
             {/* errors will return when field validation fails  */}
@@ -74,14 +84,8 @@ const AddClass = () => {
               {errors.exampleRequired && <span>This field is required</span>}
             </p>
 
-            <input className="btn mt-3" type="submit" value="Register" />
+            <input className="btn mt-3" type="submit" value="Add" />
           </form>
-
-          <label className="label">
-            <Link to="/login" className="text-white text-xl">
-              Already have an account? Login now!
-            </Link>
-          </label>
         </div>
       </div>
     </div>

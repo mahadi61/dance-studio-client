@@ -1,4 +1,6 @@
 import { AiFillHome } from "react-icons/ai";
+import { BsFillMortarboardFill, BsPeopleFill } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
 // import { BsFillPeopleFill } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
 
@@ -9,13 +11,13 @@ const DashboardLayout = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
-          <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary absolute top-4 left-5 drawer-button lg:hidden"
           >
-            Open drawer
+            <FaBars />
           </label>
+          <Outlet></Outlet>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -23,7 +25,6 @@ const DashboardLayout = () => {
             {/* Sidebar content here */}
             <li>
               <Link to="/">
-                {" "}
                 <AiFillHome />
                 Home
               </Link>
@@ -31,25 +32,29 @@ const DashboardLayout = () => {
 
             <li>
               <Link to="/instructors">
-                {/* <BsFillPeopleFill /> */}
+                <BsPeopleFill />
                 Instructors
               </Link>
             </li>
             <li>
-              <Link to="/classes">Classes</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">
-                {/* <BiSolidDashboard /> */}
-                Dashboard
+              <Link to="/classes">
+                <BsFillMortarboardFill />
+                Classes
               </Link>
             </li>
+
             <div className="divider"></div>
             <li>
               <Link to="/dashboard/addClass">Add A Class</Link>
             </li>
             <li>
-              <Link>My Classes</Link>
+              <Link to="/dashboard/myClass">My Classes</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/mySelectedClass">My Selected Classes</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/myEnrolledClasses">My Enrolled Classes</Link>
             </li>
           </ul>
         </div>
