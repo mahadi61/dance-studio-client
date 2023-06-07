@@ -14,19 +14,18 @@ const Login = () => {
     <div className="hero min-h-screen bg-[url('https://i.ibb.co/Jrz4JX5/loginbg1.png')]">
       <div className="justify-self-end w-full max-w-xl pe-8">
         <div>
+          <div className="text-center">
+            <h1 className="text-5xl font-bold text-white">Login now!</h1>
+          </div>
           {/* login form */}
           <form onSubmit={handleSubmit(onSubmit)} className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-white text-xl">Email</span>
             </label>
 
-            <input
-              className="input input-bordered"
-              defaultValue="test"
-              {...register("example")}
-            />
+            <input className="input input-bordered" {...register("example")} />
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-white text-xl">Password</span>
             </label>
 
             <input
@@ -35,7 +34,9 @@ const Login = () => {
             />
 
             {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && <span>This field is required</span>}
+            <p className="text-orange-500">
+              {errors.exampleRequired && <span>This field is required</span>}
+            </p>
 
             <input className="btn mt-4" type="submit" value="Login" />
           </form>

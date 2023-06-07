@@ -12,8 +12,9 @@ const OurClasses = () => {
   return (
     <div className=" py-6 mb-6">
       <div className="text-center">
-        <h1 className="text-5xl text-[#1C222F]">Our Classes</h1>
-        <p className="text-xl text-[#EA6044] mt-2">Choose your style</p>
+        <h1 className="text-5xl text-[#1C222F] capitalize">
+          Our Classes Best dancer
+        </h1>
       </div>
       <Swiper
         effect={"coverflow"}
