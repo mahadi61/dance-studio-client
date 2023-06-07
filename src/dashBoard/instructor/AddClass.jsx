@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 
 const AddClass = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
