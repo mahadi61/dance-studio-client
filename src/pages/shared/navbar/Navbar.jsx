@@ -4,17 +4,16 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </li>
-
       <li>
         <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <Link>Classes</Link>
+        <Link to="/classes">Classes</Link>
       </li>
       <li>
-        <Link>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li>
         <Link to="/login">Login</Link>
@@ -23,10 +22,10 @@ const Navbar = () => {
   );
 
   return (
-    <div>
+    <div className="max-w-7xl ">
       <div className="navbar  text-white absolute top-0 z-10">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown ">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,9 +42,10 @@ const Navbar = () => {
                 />
               </svg>
             </label>
+
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-[#1C222F] rounded-box w-52"
             >
               {navItems}
             </ul>

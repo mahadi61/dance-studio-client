@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const Registration = () => {
+const AddClass = () => {
   const {
     register,
     handleSubmit,
@@ -11,46 +11,50 @@ const Registration = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div className="hero min-h-screen pt-16 bg-[url('https://i.ibb.co/Jrz4JX5/loginbg1.png')]">
-      <div className="justify-self-end w-full max-w-xl pe-8">
+    <div className="hero min-h-screen pt-16 bg-lime-950">
+      <div className="justify-self-center w-full max-w-xl pe-8">
         <div>
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-white">Register now!</h1>
+            <h1 className="text-5xl font-bold text-white">Add A Class</h1>
           </div>
           {/* login form */}
           <form onSubmit={handleSubmit(onSubmit)} className="form-control">
             <label className="label">
-              <span className="label-text text-white text-sm">Name</span>
+              <span className="label-text text-white text-sm">Class name</span>
             </label>
             <input
               className="input input-bordered"
-              placeholder="Enter your name"
+              placeholder="Enter your class name"
               {...register("example", { required: true })}
             />
             <label className="label">
-              <span className="label-text text-white text-sm">Photo URL</span>
+              <span className="label-text text-white text-sm">Class Image</span>
             </label>
             <input
               className="input input-bordered"
-              placeholder="Enter your photo URL"
+              placeholder="Enter your class image"
               {...register("example", { required: true })}
             />
             <label className="label">
-              <span className="label-text text-white text-sm">Email</span>
+              <span className="label-text text-white text-sm">
+                Instructor Name
+              </span>
             </label>
             <input
               className="input input-bordered"
               placeholder="Enter your email"
-              type="email"
+              type="text"
               {...register("example", { required: true })}
             />
             <label className="label">
-              <span className="label-text text-white text-sm">Password</span>
+              <span className="label-text text-white text-sm">
+                Instructor Email
+              </span>
             </label>
             <input
               className="input input-bordered"
               placeholder="Enter your password"
-              type="password"
+              type="email"
               {...register("exampleRequired", { required: true })}
             />
             <label className="label">
@@ -84,4 +88,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default AddClass;
