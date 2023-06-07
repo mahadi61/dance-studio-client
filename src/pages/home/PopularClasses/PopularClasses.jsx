@@ -10,7 +10,7 @@ const PopularClasses = () => {
       <div>
         <div className="card card-compact w-96 bg-base-100">
           <figure>
-            <img src="https://i.ibb.co/R64JZ2R/Untitled-2-01.png" alt="Shoes" />
+            <img src="https://i.ibb.co/R64JZ2R/Untitled-2-01.png" alt="dance" />
           </figure>
           <div className="card-body">
             <h2 className="card-title">Shoes!</h2>

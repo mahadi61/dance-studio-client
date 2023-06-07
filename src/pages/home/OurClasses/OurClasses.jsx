@@ -10,9 +10,9 @@ import { EffectCoverflow, Pagination } from "swiper";
 
 const OurClasses = () => {
   return (
-    <div className="bg-[#1C222F] py-6 mb-6">
+    <div className=" py-6 mb-6">
       <div className="text-center">
-        <h1 className="text-5xl text-white">Our Classes</h1>
+        <h1 className="text-5xl text-[#1C222F]">Our Classes</h1>
         <p className="text-xl text-[#EA6044] mt-2">Choose your style</p>
       </div>
       <Swiper
