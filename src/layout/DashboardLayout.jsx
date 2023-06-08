@@ -5,6 +5,9 @@ import { FaBars } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
+  const isAdmin = false;
+  const isInstructor = false;
+
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -19,9 +22,13 @@ const DashboardLayout = () => {
           </label>
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side bg-sky-800 text-center">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-60 h-full  bg-sky-800 text-white ">
+          <div className="lg:text-3xl mt-3">
+            <span className="text-white bg-black p-1">Dance</span>
+            <span className="bg-white text-black p-1">Studio</span>
+          </div>
+          <ul className="menu p-4 w-60 h-full   text-white ">
             {/* Sidebar content here */}
             <li className="hover:bg-[#acb13c]">
               <Link to="/">
@@ -44,18 +51,39 @@ const DashboardLayout = () => {
             </li>
 
             <div className="divider"></div>
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/dashboard/addClass">Add A Class</Link>
-            </li>
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/dashboard/myClass">My Classes</Link>
-            </li>
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/dashboard/mySelectedClass">My Selected Classes</Link>
-            </li>
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/dashboard/myEnrolledClasses">My Enrolled Classes</Link>
-            </li>
+            {/* dynamic link for admin, instructor and for user */}
+            {isAdmin ? (
+              <>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/manageClasses">Manage Classes</Link>
+                </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/manageUsers">Manage Users</Link>
+                </li>
+              </>
+            ) : isInstructor ? (
+              <>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/addClass">Add A Class</Link>
+                </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/myClass">My Classes</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/mySelectedClass">
+                    My Selected Classes
+                  </Link>
+                </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/myEnrolledClasses">
+                    My Enrolled Classes
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

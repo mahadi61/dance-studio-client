@@ -36,8 +36,22 @@ const Registration = () => {
         if (user) {
           profileUpdate(name, photo)
             .then(() => {
-              Swal.fire("Register Successful!", "", "success");
-              navigate("/");
+              const user = { name: name, email: email };
+              // save user info in database
+              fetch("http://localhost:5000/users", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(user),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.insertedId) {
+                    Swal.fire("Register Successful!", "", "success");
+                    navigate("/");
+                  }
+                });
             })
             .catch((error) => {
               Swal.fire({
