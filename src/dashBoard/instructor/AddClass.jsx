@@ -10,7 +10,7 @@ const AddClass = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div className="hero min-h-screen py-16 bg-sky-700">
+    <div className="hero min-h-screen py-16 bg-[#2F2F2F]">
       <div className="justify-self-center w-full max-w-xl px-2">
         <div>
           <div className="text-center">

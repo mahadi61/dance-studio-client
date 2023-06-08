@@ -21,22 +21,22 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-60 h-full bg-sky-800 text-white ">
+          <ul className="menu p-4 w-60 h-full  bg-sky-800 text-white ">
             {/* Sidebar content here */}
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/">
                 <AiFillHome />
                 Home
               </Link>
             </li>
 
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/instructors">
                 <BsPeopleFill />
                 Instructors
               </Link>
             </li>
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/classes">
                 <BsFillMortarboardFill />
                 Classes
@@ -44,16 +44,16 @@ const DashboardLayout = () => {
             </li>
 
             <div className="divider"></div>
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/dashboard/addClass">Add A Class</Link>
             </li>
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/dashboard/myClass">My Classes</Link>
             </li>
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/dashboard/mySelectedClass">My Selected Classes</Link>
             </li>
-            <li>
+            <li className="hover:bg-[#acb13c]">
               <Link to="/dashboard/myEnrolledClasses">My Enrolled Classes</Link>
             </li>
           </ul>
