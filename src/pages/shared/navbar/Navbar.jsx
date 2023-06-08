@@ -84,7 +84,10 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <Link className="text-3xl">Dance Studio</Link>
+          <Link to="/" className="lg:text-3xl   ">
+            <span className="text-white bg-black p-1">Dance</span>
+            <span className="bg-white text-black p-1">Studio</span>
+          </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>

@@ -11,7 +11,12 @@ const FooterBottom = () => {
     <div>
       <footer className="footer footer-center p-10 bg-[#1C222F] text-[#929396]">
         <div>
-          <h2 className="text-4xl text-[#EA6044] font-bold">Dance Studio</h2>
+          <h2 className="text-4xl text-[#EA6044] font-bold">
+            <Link to="/" className="lg:text-3xl   ">
+              <span className="text-white bg-black p-1">Dance</span>
+              <span className="bg-white text-black p-1">Studio</span>
+            </Link>
+          </h2>
         </div>
         <div>
           <div className="grid grid-flow-col gap-4">
