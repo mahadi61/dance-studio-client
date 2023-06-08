@@ -90,7 +90,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
           {user && (
             <div className="w-10 rounded-full">
-              <img src={user?.photoURL} />
+              <img style={{ borderRadius: "50%" }} src={user?.photoURL} />
             </div>
           )}
         </div>

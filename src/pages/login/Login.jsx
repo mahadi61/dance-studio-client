@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
-  const { singUpWithEmail } = useContext(AuthContext);
-
+  const { singUpWithEmail, googleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,6 +15,24 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const googleSinIn = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire("SingIn Successful!", "", "success");
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: `${error?.message}`,
+          text: "Please try again!",
+        });
+      });
   };
 
   return (
@@ -54,6 +74,16 @@ const Login = () => {
               Do not have an account? Register now!
             </Link>
           </label>
+          <div className="divider">or</div>
+          <p className="my-3 font-medium text-center text-white">SignUp With</p>
+          <div className="grid flex-grow place-items-center">
+            <button
+              onClick={googleSinIn}
+              className="btn text-3xl w-full bg-white"
+            >
+              <FaGoogle />
+            </button>
+          </div>
         </div>
       </div>
     </div>

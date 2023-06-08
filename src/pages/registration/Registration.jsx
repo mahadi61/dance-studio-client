@@ -66,7 +66,7 @@ const Registration = () => {
           navigate("/");
         }
       })
-      .then((error) => {
+      .catch((error) => {
         Swal.fire({
           icon: "error",
           title: `${error?.message}`,
