@@ -7,6 +7,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import MainLayout from "../layout/MainLayout";
 import Classes from "../pages/AllClasses/Classes";
 import Instructors from "../pages/Instructors/Instructors";
+import ErrorPage from "../pages/errorPage/ErrorPage";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import Registration from "../pages/registration/Registration";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -41,6 +43,7 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "addClass",
