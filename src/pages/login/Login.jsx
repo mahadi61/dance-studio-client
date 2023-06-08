@@ -1,20 +1,41 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
-  const { singUpWithEmail, googleLogin } = useContext(AuthContext);
+  const { signInWithEmail, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    signInWithEmail(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire("SingIn Successful!", "", "success");
+          navigate(from, { replace: true });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: `${error?.message}`,
+          text: "Please try again!",
+        });
+      });
   };
 
   const googleSinIn = () => {
@@ -23,7 +44,7 @@ const Login = () => {
         const user = result.user;
         if (user) {
           Swal.fire("SingIn Successful!", "", "success");
-          navigate("/");
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => {

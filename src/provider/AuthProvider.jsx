@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -35,6 +36,11 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  //sign in with email and password
+  const signInWithEmail = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   //   log out
   const logOut = () => {
     return signOut(auth);
@@ -59,7 +65,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     setUser,
     setObserverState,
-    // signInWithEmail,
+    signInWithEmail,
     // loader,
     // observerState,
   };
