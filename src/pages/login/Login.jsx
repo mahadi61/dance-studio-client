@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const { singUpWithEmail } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="hero min-h-screen bg-[url('https://i.ibb.co/Jrz4JX5/loginbg1.png')]">
@@ -23,14 +28,17 @@ const Login = () => {
               <span className="label-text text-white text-xl">Email</span>
             </label>
 
-            <input className="input input-bordered" {...register("example")} />
+            <input
+              className="input input-bordered"
+              {...register("email", { required: true })}
+            />
             <label className="label">
               <span className="label-text text-white text-xl">Password</span>
             </label>
 
             <input
               className="input input-bordered"
-              {...register("exampleRequired", { required: true })}
+              {...register("password", { required: true })}
             />
 
             {/* errors will return when field validation fails  */}
@@ -43,7 +51,7 @@ const Login = () => {
 
           <label className="label">
             <Link to="/registration" className="text-white text-xl">
-              Already have an account? Register now!
+              Do not have an account? Register now!
             </Link>
           </label>
         </div>

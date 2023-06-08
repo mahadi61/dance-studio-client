@@ -1,6 +1,32 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut, setUser, setObserverState } = useContext(AuthContext);
+  const navigate = useNavigate();
+  console.log();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire("Logout Successful!", "", "success");
+        setUser(null);
+        navigate("/");
+        setObserverState(new Date().getTime());
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error.message}`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
+  };
+
   const navItems = (
     <>
       <li>
@@ -12,12 +38,20 @@ const Navbar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <button onClick={handleLogOut}>Logout</button>
+          </li>
+        </>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
 
@@ -54,9 +88,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
-          <div className="w-10 rounded-full">
-            <img src="https://i.ibb.co/bXbysTM/hero.png" />
-          </div>
+          {user && (
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          )}
         </div>
       </div>
     </div>
