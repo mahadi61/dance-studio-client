@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const [typeStatus, setTypeStatus] = useState(false);
   const { signInWithEmail, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,19 +74,30 @@ const Login = () => {
               className="input input-bordered"
               {...register("email", { required: true })}
             />
+            {errors.email && (
+              <span className="text-orange-500">This field is required</span>
+            )}
             <label className="label">
               <span className="label-text text-white text-xl">Password</span>
             </label>
+            <div className="join ">
+              <input
+                className="input input-bordered join-item w-full"
+                type={typeStatus ? "text" : "password"}
+                {...register("password", { required: true })}
+              />
 
-            <input
-              className="input input-bordered"
-              {...register("password", { required: true })}
-            />
+              <span
+                onClick={() => setTypeStatus(!typeStatus)}
+                className="btn join-item"
+              >
+                <FaEye />
+              </span>
+            </div>
 
-            {/* errors will return when field validation fails  */}
-            <p className="text-orange-500">
-              {errors.exampleRequired && <span>This field is required</span>}
-            </p>
+            {errors.password && (
+              <span className="text-orange-500">This field is required</span>
+            )}
 
             <input className="btn mt-4" type="submit" value="Login" />
           </form>
