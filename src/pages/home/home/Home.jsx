@@ -4,6 +4,8 @@ import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import Banner from "../banner/Banner";
 
 const Home = () => {
+  console.log(import.meta.env.VITE_apiKey);
+
   return (
     <div>
       <Banner></Banner>
