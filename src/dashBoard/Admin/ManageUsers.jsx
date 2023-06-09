@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { data: allUsers = [], refetch } = useQuery(["allUsers"], async () => {
@@ -6,8 +7,21 @@ const ManageUsers = () => {
     return res.json();
   });
 
+  const handleMakeAdmin = (id) => {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          Swal.fire("Make Admin Successful!", "", "success");
+          refetch();
+        }
+      });
+  };
+
   return (
-    <div className="py-5 bg-[#2F2F2F] h-full">
+    <div className="py-5 bg-[#828382] h-full">
       <h1 className="my-3 text-4xl text-white text-center">Manage Users</h1>
       <div className="overflow-x-auto">
         <table className="table text-center text-white my-6">
@@ -39,10 +53,14 @@ const ManageUsers = () => {
                       </div>
                     </div>
                   </td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
+                  <td>{user?.name}</td>
+                  <td>{user?.email}</td>
                   <td>
-                    <button className="btn btn-xs sm:btn-sm md:btn-md btn-success">
+                    <button
+                      disabled={user?.role == "admin" && true}
+                      onClick={() => handleMakeAdmin(user._id)}
+                      className="btn btn-xs sm:btn-sm md:btn-md btn-success"
+                    >
                       Make Admin
                     </button>
                   </td>
