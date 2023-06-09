@@ -3,10 +3,27 @@ import { BsFillMortarboardFill, BsPeopleFill } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 // import { BsFillPeopleFill } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
-  const isInstructor = false;
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+
+  if (isInstructorLoading) {
+    return (
+      <div className="flex justify-center items-center mt-12">
+        <span className="loading loading-spinner loading-lg  text-info "></span>
+      </div>
+    );
+  }
+  if (isAdminLoading) {
+    return (
+      <div className="flex justify-center items-center mt-12">
+        <span className="loading loading-spinner loading-lg  text-info "></span>
+      </div>
+    );
+  }
 
   return (
     <div>
