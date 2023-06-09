@@ -7,7 +7,7 @@ const ManageUsers = () => {
   });
 
   return (
-    <div className="py-5 bg-[#2F2F2F]">
+    <div className="py-5 bg-[#2F2F2F] h-full">
       <h1 className="my-3 text-4xl text-white text-center">Manage Users</h1>
       <div className="overflow-x-auto">
         <table className="table text-center text-white my-6">
@@ -16,13 +16,14 @@ const ManageUsers = () => {
             <tr>
               <th className="text-xl text-white">S/L</th>
               <th className="text-xl text-white">Photo</th>
-              <th className="text-xl text-white">Class Name</th>
-              <th className="text-xl text-white">Price</th>
-              <th className="text-xl text-white">Available Seats</th>
+              <th className="text-xl text-white">Name</th>
+              <th className="text-xl text-white">Email</th>
+              <th className="text-xl text-white">Make Admin</th>
+              <th className="text-xl text-white">Make Instructor</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
+            {/* data of all user  */}
 
             {allUsers.map((user, index) => (
               <>
@@ -40,12 +41,19 @@ const ManageUsers = () => {
                   </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>pending</td>
+                  <td>
+                    <button className="btn btn-xs sm:btn-sm md:btn-md btn-success">
+                      Make Admin
+                    </button>
+                  </td>
+                  <td>
+                    <button className="btn btn-xs sm:btn-sm md:btn-md btn-info">
+                      Make Instructor
+                    </button>
+                  </td>
                 </tr>
               </>
             ))}
-
-            {/* row 2 */}
           </tbody>
         </table>
       </div>
