@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
+  const [typeStatus, setTypeStatus] = useState(false);
+  const [typeStatusConfirm, setTypeStatusForConfirm] = useState(false);
+
   const { singUpWithEmail, profileUpdate, googleLogin } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,7 +39,7 @@ const Registration = () => {
         if (user) {
           profileUpdate(name, photo)
             .then(() => {
-              const user = { name: name, email: email };
+              const user = { name: name, email: email, photoUrl: photo };
               // save user info in database
               fetch("http://localhost:5000/users", {
                 method: "POST",
@@ -137,15 +140,26 @@ const Registration = () => {
             <label className="label">
               <span className="label-text text-white text-sm">Password</span>
             </label>
-            <input
-              className="input input-bordered"
-              placeholder="Enter your password"
-              type="password"
-              {...register("password", {
-                required: true,
-                pattern: /^(?=.*[A-Z])(?=.*[@$!%*?&]).{6,}$/,
-              })}
-            />
+
+            <div className="join ">
+              <input
+                className="input input-bordered join-item w-full"
+                placeholder="Enter your password"
+                type={typeStatus ? "text" : "password"}
+                {...register("password", {
+                  required: true,
+                  pattern: /^(?=.*[A-Z])(?=.*[@$!%*?&]).{6,}$/,
+                })}
+              />
+
+              <span
+                onClick={() => setTypeStatus(!typeStatus)}
+                className="btn join-item"
+              >
+                <FaEye />
+              </span>
+            </div>
+
             {errors?.password?.type === "required" && (
               <p className="text-orange-500">This field is required</p>
             )}
@@ -160,12 +174,22 @@ const Registration = () => {
                 Confirm Password
               </span>
             </label>
-            <input
-              className="input input-bordered"
-              placeholder="Enter your password"
-              type="password"
-              {...register("confirmPassword", { required: true })}
-            />
+
+            <div className="join ">
+              <input
+                className="input input-bordered join-item w-full"
+                placeholder="Enter your password"
+                type={typeStatusConfirm ? "text" : "password"}
+                {...register("confirmPassword", { required: true })}
+              />
+
+              <span
+                onClick={() => setTypeStatusForConfirm(!typeStatusConfirm)}
+                className="btn join-item"
+              >
+                <FaEye />
+              </span>
+            </div>
 
             {errors.confirmPassword &&
               (errors.confirmPassword.message ? (

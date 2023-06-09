@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   const isInstructor = false;
 
   return (

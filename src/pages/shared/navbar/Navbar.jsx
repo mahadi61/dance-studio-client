@@ -92,8 +92,8 @@ const Navbar = () => {
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
           {user && (
-            <div className="w-10 rounded-full">
-              <img style={{ borderRadius: "50%" }} src={user?.photoURL} />
+            <div className="w-10">
+              <img style={{ clipPath: "circle()" }} src={user?.photoURL} />
             </div>
           )}
         </div>
