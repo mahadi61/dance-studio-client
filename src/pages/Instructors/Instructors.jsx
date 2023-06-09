@@ -1,6 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import "./Instuctors.css";
 
 const Instructors = () => {
+  const { data: allInstructor = [], refetch } = useQuery(
+    ["allInstructor"],
+    async () => {
+      const res = await fetch("http://localhost:5000/allInstructor");
+      return res.json();
+    }
+  );
+
   return (
     <div className="instructor-bg">
       <div className="w-11/12 mx-auto text-white pt-20">
@@ -10,47 +19,33 @@ const Instructors = () => {
             {/* head */}
             <thead>
               <tr>
-                <th className="text-white">S/L</th>
-                <th className="text-white">Photo</th>
-                <th className="text-white">Name</th>
-                <th className="text-white">Email</th>
+                <th className="text-white text-xl">S/L</th>
+                <th className="text-white text-xl">Photo</th>
+                <th className="text-white text-xl">Name</th>
+                <th className="text-white text-xl">Email</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://i.ibb.co/bXbysTM/hero.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td>Zemla</td>
-                <td>Purple.com</td>
-              </tr>
-              {/* row 2 */}
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://i.ibb.co/bXbysTM/hero.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td>Zemla</td>
-                <td>Purple.com</td>
-              </tr>
-              {/* row 2 end */}
+              {/* all instructor show in row */}
+              {allInstructor.map((instructor, i) => (
+                <>
+                  <tr>
+                    <th>{i + 1}</th>
+                    <td>
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src={instructor?.photoUrl}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td>{instructor?.name}</td>
+                    <td>{instructor?.email}</td>
+                  </tr>
+                </>
+              ))}
             </tbody>
           </table>
         </div>
