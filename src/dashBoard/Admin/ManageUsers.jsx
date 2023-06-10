@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 const ManageUsers = () => {
-  const { data: allUsers = [], refetch } = useQuery(["allUsers"], async () => {
-    const res = await fetch("http://localhost:5000/allUsers");
-    return res.json();
+  const { data: allUsers = [], refetch } = useQuery({
+    queryKey: ["allUsers"],
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/allUsers`);
+      return res.data;
+    },
   });
 
   //   make role as an admin

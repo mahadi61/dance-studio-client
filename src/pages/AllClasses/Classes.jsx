@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -9,13 +10,13 @@ const Classes = () => {
   const navigate = useNavigate();
 
   const { data: allClass = [], refetch } = useQuery(["allClass"], async () => {
-    const res = await fetch("http://localhost:5000/classes");
-    return res.json();
+    const res = await axios.get("http://localhost:5000/classes");
+    return res.data;
   });
 
   const { data: allUsers = [] } = useQuery(["allUsers"], async () => {
-    const res = await fetch("http://localhost:5000/allUsers");
-    return res.json();
+    const res = await axios.get("http://localhost:5000/allUsers");
+    return res.data;
   });
 
   const loggedInUser = allUsers.find((u) => u?.email == user?.email);

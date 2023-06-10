@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageClasses = () => {
-  const { data: allClass = [], refetch } = useQuery(["allClass"], async () => {
-    const res = await fetch(`http://localhost:5000/admin/allClasses`);
-    return res.json();
+  const { data: allClass = [], refetch } = useQuery({
+    queryKey: ["allClass"],
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/admin/allClasses`);
+      return res.data;
+    },
   });
 
   const handleApproved = (id) => {
@@ -89,8 +93,8 @@ const ManageClasses = () => {
                   <button
                     onClick={() => handleApproved(cla._id)}
                     disabled={
-                      cla?.status == "approved" ||
-                      (cla?.status == "approved" && true)
+                      (cla?.status == "denied" || cla?.status == "approved") &&
+                      true
                     }
                     className="btn btn-xs sm:btn-sm md:btn-md btn-info"
                   >
@@ -101,8 +105,8 @@ const ManageClasses = () => {
                   <button
                     onClick={() => handleDenied(cla._id)}
                     disabled={
-                      cla?.status == "denied" ||
-                      (cla?.status == "approved" && true)
+                      (cla?.status == "denied" || cla?.status == "approved") &&
+                      true
                     }
                     className="btn btn-xs sm:btn-sm md:btn-md btn-info"
                   >

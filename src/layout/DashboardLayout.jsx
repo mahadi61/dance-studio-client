@@ -1,7 +1,9 @@
 import { AiFillHome } from "react-icons/ai";
+import { BiAddToQueue } from "react-icons/bi";
 import { BsFillMortarboardFill, BsPeopleFill } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
-// import { BsFillPeopleFill } from "react-icons/bs";
+import { FcManager } from "react-icons/fc";
+import { SiAdguard, SiGoogleclassroom } from "react-icons/si";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
@@ -72,19 +74,42 @@ const DashboardLayout = () => {
             {isAdmin ? (
               <>
                 <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/manageClasses">Manage Classes</Link>
+                  <Link to="/dashboard">
+                    <SiAdguard />
+                    Admin Home
+                  </Link>
                 </li>
                 <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/manageUsers">Manage Users</Link>
+                  <Link to="/dashboard/manageClasses">
+                    <SiGoogleclassroom />
+                    Manage Classes
+                  </Link>
+                </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/manageUsers">
+                    {/* <FaPeopleGroup /> */}
+                    Manage Users
+                  </Link>
                 </li>
               </>
             ) : isInstructor ? (
               <>
                 <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/addClass">Add A Class</Link>
+                  <Link to="/dashboard">
+                    <FcManager />
+                    Instructor Home
+                  </Link>
                 </li>
                 <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/myClass">My Classes</Link>
+                  <Link to="/dashboard/addClass">
+                    <BiAddToQueue />
+                    Add A Class
+                  </Link>
+                </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/myClass">
+                    <SiGoogleclassroom /> My Classes
+                  </Link>
                 </li>
               </>
             ) : (

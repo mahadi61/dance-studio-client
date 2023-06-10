@@ -5,6 +5,7 @@ import MyEnrolledClasses from "../dashBoard/Student/MyEnrolledClasses";
 import MySelectedClasses from "../dashBoard/Student/MySelectedClasses";
 import AddClass from "../dashBoard/instructor/AddClass";
 import MyClass from "../dashBoard/instructor/MyClass";
+import UpdateClass from "../dashBoard/instructor/UpdateClass";
 import DashboardLayout from "../layout/DashboardLayout";
 import MainLayout from "../layout/MainLayout";
 import Classes from "../pages/AllClasses/Classes";
@@ -79,6 +80,15 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
       },
+      {
+        path: "update-class-details/:id",
+        element: (
+          <InstructorRoute>
+            <UpdateClass></UpdateClass>
+          </InstructorRoute>
+        ),
+      },
+
       {
         path: "myClass",
         element: (

@@ -1,20 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useContext } from "react";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const MyClass = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: instructorClass = [] } = useQuery(
-    ["allInstructor"],
-    async () => {
-      const res = await fetch(
+  const { data: instructorClass = [] } = useQuery({
+    queryKey: ["allInstructor"],
+    queryFn: async () => {
+      const res = await axios.get(
         `http://localhost:5000/instructor/${user?.email}`
       );
-      return res.json();
-    }
-  );
+      return res.data;
+    },
+  });
 
   return (
     <div className="py-5 h-full bg-[#2F2F2F]">
@@ -37,34 +39,35 @@ const MyClass = () => {
           <tbody>
             {/* show all instruct class added by instructor */}
             {instructorClass.map((singleClass, i) => (
-              <>
-                <tr>
-                  <th>{i + 1}</th>
-                  <td>
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={singleClass?.classPhoto}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
+              <tr key={i}>
+                <th>{i + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                      <img
+                        src={singleClass?.classPhoto}
+                        alt="Avatar Tailwind CSS Component"
+                      />
                     </div>
-                  </td>
-                  <td>
-                    <p>{singleClass?.className}</p>
-                    <p>Price: ${singleClass?.price}</p>
-                  </td>
-                  <td>{singleClass?.seats}</td>
-                  <td>{singleClass?.status}</td>
-                  <td>{singleClass?.feedback}</td>
-                  <td>
-                    <button className="btn bg-yellow-500 border-0 btn-circle">
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td>{singleClass?.feedback}</td>
-                </tr>
-              </>
+                  </div>
+                </td>
+                <td>
+                  <p>{singleClass?.className}</p>
+                  <p>Price: ${singleClass?.price}</p>
+                </td>
+                <td>{singleClass?.seats}</td>
+                <td>{singleClass?.status}</td>
+                <td>{singleClass?.feedback}</td>
+                <td>
+                  <Link
+                    to={`/dashboard/update-class-details/${singleClass?._id}`}
+                    className="btn bg-yellow-500 border-0 btn-circle"
+                  >
+                    <FaEdit />
+                  </Link>
+                </td>
+                <td>{singleClass?.feedback}</td>
+              </tr>
             ))}
           </tbody>
         </table>

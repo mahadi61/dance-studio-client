@@ -82,6 +82,7 @@ const Login = () => {
             </label>
             <div className="join ">
               <input
+                defaultValue="12345A%"
                 className="input input-bordered join-item w-full"
                 type={typeStatus ? "text" : "password"}
                 {...register("password", { required: true })}
