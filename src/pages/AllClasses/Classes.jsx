@@ -81,14 +81,10 @@ const Classes = () => {
                 <div className="card-actions items-center justify-between">
                   <p className="text-xl">Price: ${cla?.price}</p>
                   <p className="text-xl">Available Seats: {cla?.seats}</p>
+                  <p className="text-xl">
+                    Instructor Name: {cla?.instructorName}
+                  </p>
                   <button
-                    // disabled={
-                    //   selectedClass.find(
-                    //     (singleClass) => singleClass._id == cla?._id
-                    //   )
-                    //     ? true
-                    //     : false
-                    // }
                     disabled={
                       (cla?.seats == 0 && true) ||
                       (loggedInUser?.role == "admin" && true) ||
@@ -103,10 +99,6 @@ const Classes = () => {
               </div>
             </div>
           ))}
-
-          {/* card 1 */}
-
-          {/* card end */}
         </div>
       </div>
     </div>
