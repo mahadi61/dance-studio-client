@@ -2,13 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import "./Instuctors.css";
 
 const Instructors = () => {
-  const { data: allInstructor = [], refetch } = useQuery(
-    ["allInstructor"],
-    async () => {
-      const res = await fetch("http://localhost:5000/allInstructor");
-      return res.json();
-    }
-  );
+  const { data: allInstructor = [] } = useQuery(["allInstructor"], async () => {
+    const res = await fetch("http://localhost:5000/allInstructor");
+    return res.json();
+  });
 
   return (
     <div className="instructor-bg">

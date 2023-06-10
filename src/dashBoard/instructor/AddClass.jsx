@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
-const photo_hosting_token = import.meta.env.VITE_Photo_hosting_token;
+// const photo_hosting_token = import.meta.env.VITE_Photo_hosting_token;
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +11,7 @@ const AddClass = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -44,6 +45,7 @@ const AddClass = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire("Class Added Successful!", "", "success");
+          reset();
         }
       });
   };
