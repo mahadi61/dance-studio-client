@@ -13,7 +13,10 @@ import ErrorPage from "../pages/errorPage/ErrorPage";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import Registration from "../pages/registration/Registration";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 import PrivetRoute from "./PrivetRoute";
+import UserRoute from "./UserRoute";
 
 const router = createBrowserRouter([
   {
@@ -54,27 +57,51 @@ const router = createBrowserRouter([
     children: [
       {
         path: "manageClasses",
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "addClass",
-        element: <AddClass></AddClass>,
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "myClass",
-        element: <MyClass></MyClass>,
+        element: (
+          <InstructorRoute>
+            <MyClass></MyClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "mySelectedClass",
-        element: <MySelectedClasses></MySelectedClasses>,
+        element: (
+          <UserRoute>
+            <MySelectedClasses></MySelectedClasses>
+          </UserRoute>
+        ),
       },
       {
         path: "myEnrolledClasses",
-        element: <MyEnrolledClasses></MyEnrolledClasses>,
+        element: (
+          <UserRoute>
+            <MyEnrolledClasses></MyEnrolledClasses>
+          </UserRoute>
+        ),
       },
     ],
   },

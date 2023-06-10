@@ -18,8 +18,7 @@ const Classes = () => {
     return res.json();
   });
 
-  const loggedInUser = allUsers.find((u) => u.email == user.email);
-  console.log(loggedInUser);
+  const loggedInUser = allUsers.find((u) => u?.email == user?.email);
 
   // for button disable
   // const { data: selectedClass = [] } = useQuery(["selectedClass"], async () => {
@@ -91,7 +90,8 @@ const Classes = () => {
                     // }
                     disabled={
                       (cla?.seats == 0 && true) ||
-                      (loggedInUser.role == "admin" && true)
+                      (loggedInUser?.role == "admin" && true) ||
+                      (loggedInUser?.role == "instructor" && true)
                     }
                     onClick={() => handleEnroll(cla?._id)}
                     className="btn btn-primary btn-sm"
