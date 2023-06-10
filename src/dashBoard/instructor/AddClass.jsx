@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
-// const photo_hosting_token = import.meta.env.VITE_Photo_hosting_token;
-
 const AddClass = () => {
   const { user } = useContext(AuthContext);
 
@@ -18,21 +16,6 @@ const AddClass = () => {
     data.price = Number(data.price);
     data.seats = Number(data.seats);
     data = { ...data, status: "pending" };
-
-    // getting error when try to upload an img on imgbb get 400 ,"Empty upload source."
-
-    // const formData = new FormData();
-    // formData.append("classPhoto", data.classPhoto[0]);
-    // console.log(formData);
-
-    // fetch(`https://api.imgbb.com/1/upload?key=${photo_hosting_token}`, {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((photoRes) => {
-    //     console.log(photoRes);
-    //   });
 
     fetch("http://localhost:5000/addClass", {
       method: "POST",
@@ -73,7 +56,6 @@ const AddClass = () => {
             <input
               type="url"
               className="input input-bordered"
-              // className="file-input file-input-bordered file-input-info"
               placeholder="Enter your class image"
               {...register("classPhoto", { required: true })}
             />
