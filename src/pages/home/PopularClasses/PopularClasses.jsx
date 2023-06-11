@@ -3,9 +3,6 @@ const PopularClasses = () => {
     <div className="my-10">
       <div className="text-center">
         <h1 className="text-5xl">Popular Classes</h1>
-        <p className="text-xl text-[#EA6044] mt-2 capitalize">
-          many students choose this class
-        </p>
       </div>
       <div>
         <div className="grid lg:grid-cols-4">
