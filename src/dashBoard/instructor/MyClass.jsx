@@ -18,6 +18,14 @@ const MyClass = () => {
     },
   });
 
+  const { data: enrolledClass = [] } = useQuery({
+    queryKey: ["enrolledClass"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/total-enroll-class`);
+      return res.json();
+    },
+  });
+
   return (
     <div className="py-5 h-full bg-[#2F2F2F]">
       <h1 className="my-3 text-4xl text-white text-center">My Classes</h1>
@@ -57,7 +65,13 @@ const MyClass = () => {
                 </td>
                 <td>{singleClass?.seats}</td>
                 <td>{singleClass?.status}</td>
-                <td>{singleClass?.feedback}</td>
+                <td>
+                  {
+                    enrolledClass.filter(
+                      (cla) => cla.classId == singleClass._id
+                    ).length
+                  }
+                </td>
                 <td>
                   <Link
                     to={`/dashboard/update-class-details/${singleClass?._id}`}

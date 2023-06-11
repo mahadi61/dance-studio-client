@@ -125,6 +125,9 @@ const DashboardLayout = () => {
                     My Enrolled Classes
                   </Link>
                 </li>
+                <li className="hover:bg-[#acb13c]">
+                  <Link to="/dashboard/payment-history">Payment History</Link>
+                </li>
               </>
             )}
           </ul>

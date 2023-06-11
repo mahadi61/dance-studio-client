@@ -14,6 +14,7 @@ import ErrorPage from "../pages/errorPage/ErrorPage";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import Payment from "../pages/payment/Payment";
+import PaymentHistory from "../pages/payment/PaymentHistory";
 import Registration from "../pages/registration/Registration";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
@@ -117,6 +118,14 @@ const router = createBrowserRouter([
         element: (
           <UserRoute>
             <MyEnrolledClasses></MyEnrolledClasses>
+          </UserRoute>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <UserRoute>
+            <PaymentHistory></PaymentHistory>
           </UserRoute>
         ),
       },
