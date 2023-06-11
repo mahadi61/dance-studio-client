@@ -24,6 +24,7 @@ const PaymentHistory = () => {
           <thead>
             <tr>
               <th className="text-xl text-black">S/L</th>
+              <th className="text-xl text-black">Class Name</th>
               <th className="text-xl text-black">Payment Status</th>
               <th className="text-xl text-black">Paid Amount</th>
               <th className="text-xl text-black">Payment Time</th>
@@ -34,6 +35,7 @@ const PaymentHistory = () => {
             {enrolledClass.map((cla, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
+                <td>{cla?.className}</td>
                 <td>{cla?.paymentStatus}</td>
                 <td>${cla?.price}</td>
                 <td>{cla?.date}</td>

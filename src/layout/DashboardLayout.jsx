@@ -49,21 +49,21 @@ const DashboardLayout = () => {
           </div>
           <ul className="menu p-4 w-60 h-full   text-white ">
             {/* Sidebar content here */}
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/">
+            <li>
+              <Link to="/" className="hover:bg-[#acb13c]">
                 <AiFillHome />
                 Home
               </Link>
             </li>
 
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/instructors">
+            <li>
+              <Link to="/instructors" className="hover:bg-[#acb13c]">
                 <BsPeopleFill />
                 Instructors
               </Link>
             </li>
-            <li className="hover:bg-[#acb13c]">
-              <Link to="/classes">
+            <li>
+              <Link to="/classes" className="hover:bg-[#acb13c]">
                 <BsFillMortarboardFill />
                 Classes
               </Link>
@@ -73,60 +73,84 @@ const DashboardLayout = () => {
             {/* dynamic link for admin, instructor and for user */}
             {isAdmin ? (
               <>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard">
+                <li>
+                  <Link to="dashboard" className="hover:bg-[#acb13c]">
                     <SiAdguard />
                     Admin Home
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/manageClasses">
+                <li>
+                  <Link
+                    to="/dashboard/manageClasses"
+                    className="hover:bg-[#acb13c]"
+                  >
                     <SiGoogleclassroom />
                     Manage Classes
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/manageUsers">
-                    {/* <FaPeopleGroup /> */}
+                <li>
+                  <Link
+                    to="/dashboard/manageUsers"
+                    className="hover:bg-[#acb13c]"
+                  >
+                    <BsPeopleFill />
                     Manage Users
                   </Link>
                 </li>
               </>
             ) : isInstructor ? (
               <>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard">
+                <li>
+                  <Link to="dashboard" className="hover:bg-[#acb13c]">
                     <FcManager />
                     Instructor Home
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/addClass">
+                <li>
+                  <Link to="/dashboard/addClass" className="hover:bg-[#acb13c]">
                     <BiAddToQueue />
                     Add A Class
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/myClass">
+                <li>
+                  <Link to="/dashboard/myClass" className="hover:bg-[#acb13c]">
                     <SiGoogleclassroom /> My Classes
                   </Link>
                 </li>
               </>
             ) : (
               <>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/mySelectedClass">
+                <li>
+                  <Link to="dashboard" className="hover:bg-[#acb13c]">
+                    <FcManager />
+                    User Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/mySelectedClass"
+                    className="hover:bg-[#acb13c]"
+                  >
                     {/* <BiSolidSelectMultiple /> */}
                     My Selected Classes
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/myEnrolledClasses">
+                <li>
+                  <Link
+                    to="/dashboard/myEnrolledClasses"
+                    className="hover:bg-[#acb13c]"
+                  >
+                    <SiGoogleclassroom />
                     My Enrolled Classes
                   </Link>
                 </li>
-                <li className="hover:bg-[#acb13c]">
-                  <Link to="/dashboard/payment-history">Payment History</Link>
+                <li>
+                  <Link
+                    to="/dashboard/payment-history"
+                    className="hover:bg-[#acb13c]"
+                  >
+                    Payment History
+                  </Link>
                 </li>
               </>
             )}

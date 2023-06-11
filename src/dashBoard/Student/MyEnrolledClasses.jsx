@@ -15,18 +15,7 @@ const MyEnrolledClasses = () => {
     },
   });
 
-  const { data: allClass = [] } = useQuery({
-    queryKey: ["allClass"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/admin/allClasses`);
-      return res.json();
-    },
-  });
-  // TODO: need to final enrolled class by id from all class
-  console.log("enrolledcls", enrolledClass);
-  console.log("allcls", allClass);
-
-  // const enrolledClassByUser =
+  console.log(enrolledClass);
 
   return (
     <div className="py-5">
@@ -37,8 +26,10 @@ const MyEnrolledClasses = () => {
           <thead>
             <tr>
               <th className="text-xl text-black">S/L</th>
-              <th className="text-xl text-black">Enrolled By</th>
-              <th className="text-xl text-black">Email</th>
+              <th className="text-xl text-black">Class Photo</th>
+              <th className="text-xl text-black">Class Name</th>
+              <th className="text-xl text-black">Instructor Name</th>
+              <th className="text-xl text-black">Instructor Email</th>
               <th className="text-xl text-black">Payment Status</th>
             </tr>
           </thead>
@@ -47,9 +38,25 @@ const MyEnrolledClasses = () => {
             {enrolledClass.map((cla, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{cla?.name}</td>
-                <td>{cla?.email}</td>
-                <td>{cla?.paymentStatus}</td>
+                <td>
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                      <img src={cla?.classPhoto} alt="class photo" />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p>{cla?.className}</p>
+                </td>
+                <td>
+                  <p>{cla?.instructorName}</p>
+                </td>
+                <td>
+                  <p>{cla?.instructorEmail}</p>
+                </td>
+                <td>
+                  <p>{cla?.paymentStatus}</p>
+                </td>
               </tr>
             ))}
           </tbody>

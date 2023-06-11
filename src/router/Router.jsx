@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import ManageClasses from "../dashBoard/Admin/ManageClasses";
 import ManageUsers from "../dashBoard/Admin/ManageUsers";
+import DashBoard from "../dashBoard/DashBoard";
 import MyEnrolledClasses from "../dashBoard/Student/MyEnrolledClasses";
 import MySelectedClasses from "../dashBoard/Student/MySelectedClasses";
 import AddClass from "../dashBoard/instructor/AddClass";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "dashboard",
+        element: <DashBoard></DashBoard>,
+      },
       {
         path: "payment/:_id/:id/:amount",
         element: <Payment></Payment>,
