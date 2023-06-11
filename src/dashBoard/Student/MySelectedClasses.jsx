@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useContext } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -8,15 +9,15 @@ import { AuthContext } from "../../provider/AuthProvider";
 const MySelectedClasses = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: selectedClass = [], refetch } = useQuery(
-    ["selectedClass"],
-    async () => {
-      const res = await fetch(
+  const { data: selectedClass = [], refetch } = useQuery({
+    queryKey: ["selectedClass"],
+    queryFn: async () => {
+      const res = await axios.get(
         `http://localhost:5000/my-selected-class/${user?.email}`
       );
-      return res.json();
-    }
-  );
+      return res.data;
+    },
+  });
 
   const handleDelete = (id) => {
     const data = { id };

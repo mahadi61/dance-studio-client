@@ -1,18 +1,35 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
 const PopularInstructors = () => {
+  const { data: popularInstructor = [] } = useQuery({
+    queryKey: ["popularInstructor"],
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/popular-instructors`);
+      return res.data;
+    },
+  });
+
   return (
     <div>
       <div className="text-center">
-        <h1 className="text-5xl text-[#1C222F]">Popular Instructors</h1>
+        <h1 className="text-5xl text-[#1C222F] my-3">Popular Instructors</h1>
       </div>
-      <div className="grid lg:grid-cols-3 mt-3">
-        <div className="flex flex-col gap-1 items-center">
-          <img
-            style={{ clipPath: "circle()" }}
-            src="https://i.ibb.co/R64JZ2R/Untitled-2-01.png"
-            alt="Shoes"
-          />
-          <p className="text-2xl font-bold capitalize">Instructor name</p>
-        </div>
+      <div className="grid lg:grid-cols-3 gap-3 mt-3">
+        {popularInstructor.map((instructor) => (
+          <div
+            key={instructor?._id}
+            className="flex flex-col gap-1 items-center"
+          >
+            <img
+              style={{ clipPath: "circle()" }}
+              className="h-60"
+              src={instructor?.photoUrl}
+              alt="Instructor"
+            />
+            <p className="text-2xl font-bold capitalize">{instructor?.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

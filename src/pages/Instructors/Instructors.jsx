@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import "./Instuctors.css";
 
 const Instructors = () => {
-  const { data: allInstructor = [] } = useQuery(["allInstructor"], async () => {
-    const res = await fetch("http://localhost:5000/allInstructor");
-    return res.json();
+  const { data: allInstructor = [] } = useQuery({
+    queryKey: ["allInstructor"],
+    queryFn: async () => {
+      const res = await axios.get("http://localhost:5000/allInstructor");
+      return res.data;
+    },
   });
 
   return (

@@ -21,14 +21,6 @@ const Classes = () => {
 
   const loggedInUser = allUsers.find((u) => u?.email == user?.email);
 
-  // for button disable
-  // const { data: selectedClass = [] } = useQuery(["selectedClass"], async () => {
-  //   const res = await fetch(
-  //     `http://localhost:5000/my-selected-class/${user?.email}`
-  //   );
-  //   return res.json();
-  // });
-
   const handleEnroll = (id) => {
     if (!user) {
       Swal.fire("You need to login first!", "", "Error");

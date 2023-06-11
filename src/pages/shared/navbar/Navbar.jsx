@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { BsFillMoonFill, BsSun } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../provider/AuthProvider";
@@ -6,7 +7,23 @@ import { AuthContext } from "../../../provider/AuthProvider";
 const Navbar = () => {
   const { user, logOut, setUser, setObserverState } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log();
+
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleThemeChange = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   const handleLogOut = () => {
     logOut()
@@ -29,6 +46,26 @@ const Navbar = () => {
 
   const navItems = (
     <>
+      <li>
+        <label className="swap swap-flip">
+          {/* this hidden checkbox controls the state */}
+          <input onChange={handleThemeChange} type="checkbox" />
+
+          {/* sun icon */}
+
+          <span className="flex gap-1 items-center swap-on">
+            <BsSun />
+            Light Mode
+          </span>
+
+          {/* moon icon */}
+
+          <span className="flex gap-1 items-center swap-off">
+            <BsFillMoonFill />
+            Dark Mode
+          </span>
+        </label>
+      </li>
       <li>
         <Link to="/" className="font-bold">
           Home
@@ -103,6 +140,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
+
           {user && (
             <div className="w-10">
               <img style={{ clipPath: "circle()" }} src={user?.photoURL} />
