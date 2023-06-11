@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "payment/:id/:amount",
+        path: "payment/:_id/:id/:amount",
         element: <Payment></Payment>,
       },
       // admin routes

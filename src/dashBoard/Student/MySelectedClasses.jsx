@@ -75,7 +75,7 @@ const MySelectedClasses = () => {
                 {/* <td>{console.log(cla)}</td> */}
                 <td>
                   <Link
-                    to={`/dashboard/payment/${cla?.enrolledClassId}/${cla?.price}`}
+                    to={`/dashboard/payment/${cla?._id}/${cla?.enrolledClassId}/${cla?.price}`}
                     className="btn btn-primary border-0 text-white"
                   >
                     Pay Now

@@ -8,16 +8,6 @@ const UpdateClass = () => {
   const { id } = useParams();
   const [updateClassData, setUpdateClassData] = useState({});
 
-  //   const { data: updateClassData = [] } = useQuery({
-  //     queryKey: ["updateClassData"],
-  //     queryFn: async () => {
-  //       const res = await axios.get(
-  //         `http://localhost:5000/updateClassData/${id}`
-  //       );
-  //       return res.data;
-  //     },
-  //   });
-
   useEffect(() => {
     fetch(`http://localhost:5000/updateClassData/${id}`)
       .then((res) => res.json())
@@ -25,8 +15,6 @@ const UpdateClass = () => {
         setUpdateClassData(data);
       });
   }, [id]);
-
-  //   console.log(updateClassData);
 
   const {
     register,

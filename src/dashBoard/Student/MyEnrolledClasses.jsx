@@ -1,4 +1,22 @@
+import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+
 const MyEnrolledClasses = () => {
+  const { user } = useContext(AuthContext);
+
+  const { data: enrolledClass = [] } = useQuery({
+    queryKey: ["enrolledClass"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/my-enroll-class/${user?.email}`
+      );
+      return res.json();
+    },
+  });
+
+  console.log(enrolledClass);
+
   return (
     <div className="py-5">
       <h1 className="my-3 text-4xl text-center">My Enrolled Classes</h1>
@@ -8,32 +26,25 @@ const MyEnrolledClasses = () => {
           <thead>
             <tr>
               <th className="text-xl text-black">S/L</th>
-              <th className="text-xl text-black">Photo</th>
-              <th className="text-xl text-black">Class Name</th>
-              <th className="text-xl text-black">Instructor Name</th>
-              <th className="text-xl text-black">Price</th>
+              <th className="text-xl text-black">Enrolled By</th>
+              <th className="text-xl text-black">Email</th>
               <th className="text-xl text-black">Payment Status</th>
+              <th className="text-xl text-black">Paid</th>
+              <th className="text-xl text-black">Payment Time</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
-                    <img
-                      src="https://i.ibb.co/bXbysTM/hero.png"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>Zemla</td>
-              <td>Purple.com</td>
-              <td>pending</td>
-            </tr>
-            {/* row 2 */}
+            {/* all enrolledClass by user*/}
+            {enrolledClass.map((cla, i) => (
+              <tr key={i}>
+                <th>{i + 1}</th>
+                <td>{cla?.name}</td>
+                <td>{cla?.email}</td>
+                <td>{cla?.paymentStatus}</td>
+                <td>${cla?.price}</td>
+                <td>{cla?.date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

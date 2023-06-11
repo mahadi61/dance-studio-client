@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 import "./CheckOut.css";
 
-const CheckOut = ({ id, price }) => {
+const CheckOut = ({ _id, id, price }) => {
   const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
@@ -77,7 +77,9 @@ const CheckOut = ({ id, price }) => {
       const paymentInfo = {
         name: user?.displayName,
         email: user?.email,
+        paymentStatus: "paid",
         classId: id,
+        enrollClassId: _id,
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
@@ -90,10 +92,6 @@ const CheckOut = ({ id, price }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(
-            data.insertPayment.acknowledged,
-            data.deleteClass.acknowledged
-          );
           if (
             data.insertPayment.acknowledged &&
             data.deleteClass.acknowledged

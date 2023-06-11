@@ -6,14 +6,14 @@ import CheckOut from "./CheckOut";
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_pk);
 
 const Payment = () => {
-  const { id, amount } = useParams();
+  const { _id, id, amount } = useParams();
 
   const price = parseFloat(amount);
   return (
     <div>
       This is payment
       <Elements stripe={stripePromise}>
-        <CheckOut id={id} price={price}></CheckOut>
+        <CheckOut _id={_id} id={id} price={price}></CheckOut>
       </Elements>
     </div>
   );
