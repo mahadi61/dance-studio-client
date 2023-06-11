@@ -72,9 +72,10 @@ const MySelectedClasses = () => {
                 <td>{cla?.className}</td>
                 <td>${cla?.price}</td>
                 <td>{cla?.paymentStatus}</td>
+                {/* <td>{console.log(cla)}</td> */}
                 <td>
                   <Link
-                    to={`/dashboard/payment/${cla?.price}`}
+                    to={`/dashboard/payment/${cla?.enrolledClassId}/${cla?.price}`}
                     className="btn btn-primary border-0 text-white"
                   >
                     Pay Now

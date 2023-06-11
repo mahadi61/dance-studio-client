@@ -1,23 +1,29 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
+import "./CheckOut.css";
 
-const CheckOut = ({ price }) => {
+const CheckOut = ({ id, price }) => {
   const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [tnxId, setTnxId] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/payment-intent-for-class", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price: price }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [price]);
+    if (price > 0) {
+      fetch("http://localhost:5000/payment-intent-for-class", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price: price }),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret));
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,7 +33,6 @@ const CheckOut = ({ price }) => {
     }
 
     const card = elements.getElement(CardElement);
-    console.log(card);
     if (card == null) {
       return;
     }
@@ -38,12 +43,13 @@ const CheckOut = ({ price }) => {
     });
 
     if (error) {
-      console.log("[error]", error);
+      //   console.log("[error]", error);
       setError(error.message);
     } else {
       setError("");
-      console.log("[PaymentMethod]", paymentMethod);
+      //   console.log("[PaymentMethod]", paymentMethod);
     }
+    setLoading(true);
 
     const { paymentIntent, error: err } = await stripe.confirmCardPayment(
       clientSecret,
@@ -59,11 +65,43 @@ const CheckOut = ({ price }) => {
     );
 
     if (err) {
-      console.log(err);
       setError(err?.message);
     }
 
-    console.log(paymentIntent);
+    // console.log("paymentIntent", paymentIntent);
+    setLoading(false);
+
+    if (paymentIntent.status === "succeeded") {
+      setTnxId(paymentIntent.id);
+      // save payment information to the server
+      const paymentInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        classId: id,
+        transactionId: paymentIntent.id,
+        price,
+        date: new Date(),
+      };
+
+      fetch("http://localhost:5000/class-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(
+            data.insertPayment.acknowledged,
+            data.deleteClass.acknowledged
+          );
+          if (
+            data.insertPayment.acknowledged &&
+            data.deleteClass.acknowledged
+          ) {
+            Swal.fire("Payment Successful!", "", "success");
+          }
+        });
+    }
 
     // end of handle payment submit
   };
@@ -88,14 +126,20 @@ const CheckOut = ({ price }) => {
           }}
         />
         <button
-          className="btn btn-primary bg-blue-600 btn-sm mt-3 "
+          className="btn btn-primary bg-blue-600 btn-sm mt-3 w-28"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || loading}
         >
-          Pay
+          <span className={loading ? `loading loading-spinner` : ""}>Pay</span>
         </button>
       </form>
       {error && <p className="text-red-500">{error}</p>}
+      {tnxId && (
+        <p className="text-green-500">
+          Transaction Successful. Your transactionId:{" "}
+          <span className="text-black font-bold">{tnxId}</span>
+        </p>
+      )}
     </>
   );
 };
