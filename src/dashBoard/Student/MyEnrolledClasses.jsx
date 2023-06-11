@@ -34,24 +34,6 @@ const MyEnrolledClasses = () => {
               <td>pending</td>
             </tr>
             {/* row 2 */}
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
-                    <img
-                      src="https://i.ibb.co/bXbysTM/hero.png"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>Zemla</td>
-              <td>Purple.com</td>
-              <td>Paid</td>
-            </tr>
-            {/* row 2 end */}
           </tbody>
         </table>
       </div>

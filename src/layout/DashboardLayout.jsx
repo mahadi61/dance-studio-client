@@ -116,6 +116,7 @@ const DashboardLayout = () => {
               <>
                 <li className="hover:bg-[#acb13c]">
                   <Link to="/dashboard/mySelectedClass">
+                    {/* <BiSolidSelectMultiple /> */}
                     My Selected Classes
                   </Link>
                 </li>

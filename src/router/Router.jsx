@@ -13,6 +13,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import ErrorPage from "../pages/errorPage/ErrorPage";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
+import Payment from "../pages/payment/Payment";
 import Registration from "../pages/registration/Registration";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
+        path: "payment/:amount",
+        element: <Payment></Payment>,
+      },
+      // admin routes
+      {
         path: "manageClasses",
         element: (
           <AdminRoute>
@@ -72,6 +78,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      // instructor routes
       {
         path: "addClass",
         element: (
@@ -88,7 +95,6 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
       },
-
       {
         path: "myClass",
         element: (
@@ -97,6 +103,7 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
       },
+      // user route
       {
         path: "mySelectedClass",
         element: (

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
@@ -72,9 +73,12 @@ const MySelectedClasses = () => {
                 <td>${cla?.price}</td>
                 <td>{cla?.paymentStatus}</td>
                 <td>
-                  <button className="btn btn-primary border-0 text-white">
+                  <Link
+                    to={`/dashboard/payment/${cla?.price}`}
+                    className="btn btn-primary border-0 text-white"
+                  >
                     Pay Now
-                  </button>
+                  </Link>
                 </td>
                 <td>
                   <button
