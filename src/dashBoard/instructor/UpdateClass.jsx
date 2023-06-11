@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const UpdateClass = () => {
@@ -19,24 +20,30 @@ const UpdateClass = () => {
   const {
     register,
     handleSubmit,
-    // reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     data.price = Number(data.price);
     data.seats = Number(data.seats);
-    console.log(data);
+    const updateData = {
+      className: data.className,
+      classPhoto: data.classPhoto,
+      seats: data.seats,
+      price: data.price,
+    };
 
     fetch(`http://localhost:5000/class/update-class-data/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(updateData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire("Class Added Successful!", "", "success");
+        }
       });
   };
 

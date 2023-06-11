@@ -1,7 +1,11 @@
 import { AiFillHome } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
-import { BsFillMortarboardFill, BsPeopleFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
+import {
+  BsFillBookmarkCheckFill,
+  BsFillMortarboardFill,
+  BsPeopleFill,
+} from "react-icons/bs";
+import { FaAmazonPay, FaBars } from "react-icons/fa";
 import { FcManager } from "react-icons/fc";
 import { SiAdguard, SiGoogleclassroom } from "react-icons/si";
 import { Link, Outlet } from "react-router-dom";
@@ -131,7 +135,7 @@ const DashboardLayout = () => {
                     to="/dashboard/mySelectedClass"
                     className="hover:bg-[#acb13c]"
                   >
-                    {/* <BiSolidSelectMultiple /> */}
+                    <BsFillBookmarkCheckFill />
                     My Selected Classes
                   </Link>
                 </li>
@@ -149,6 +153,7 @@ const DashboardLayout = () => {
                     to="/dashboard/payment-history"
                     className="hover:bg-[#acb13c]"
                   >
+                    <FaAmazonPay />
                     Payment History
                   </Link>
                 </li>

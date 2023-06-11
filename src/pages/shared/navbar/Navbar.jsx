@@ -30,26 +30,38 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/" className="font-bold">
+          Home
+        </Link>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <Link to="/instructors" className="font-bold">
+          Instructors
+        </Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/classes" className="font-bold">
+          Classes
+        </Link>
       </li>
       {user ? (
         <>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard/dashboard" className="font-bold">
+              Dashboard
+            </Link>
           </li>
           <li>
-            <button onClick={handleLogOut}>Logout</button>
+            <button onClick={handleLogOut} className="font-bold">
+              Logout
+            </button>
           </li>
         </>
       ) : (
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="font-bold">
+            Login
+          </Link>
         </li>
       )}
     </>
