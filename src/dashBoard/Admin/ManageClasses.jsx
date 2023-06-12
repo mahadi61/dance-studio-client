@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [feedbackId, setFeedbackId] = useState("");
+  const [isOpen, SetIsOpen] = useState(false);
+
   const { data: allClass = [], refetch } = useQuery({
     queryKey: ["allClass"],
     queryFn: async () => {
@@ -47,6 +49,7 @@ const ManageClasses = () => {
 
   const handleModalOpen = (id) => {
     setFeedbackId(id);
+    SetIsOpen(true);
     window.my_modal_2.showModal();
   };
 
@@ -164,7 +167,7 @@ const ManageClasses = () => {
       </table>
       {/* Open the modal for feedback from admin */}
 
-      <dialog id="my_modal_2" className="modal">
+      <dialog id={isOpen && "my_modal_2"} className="modal">
         <form
           onSubmit={handleFeedback}
           method="dialog"
@@ -184,7 +187,7 @@ const ManageClasses = () => {
             value={"Send Feedback"}
           />
         </form>
-        <form method="dialog" className="modal-bottom">
+        <form method="dialog" className="modal-backdrop">
           <button>close</button>
         </form>
       </dialog>

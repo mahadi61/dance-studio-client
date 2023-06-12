@@ -109,7 +109,7 @@ const CheckOut = ({ _id, id, price }) => {
 
   return (
     <>
-      <form className="w-3/4 mx-auto" onSubmit={handleSubmit}>
+      <form className="w-3/4 mx-auto " onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {
@@ -126,13 +126,17 @@ const CheckOut = ({ _id, id, price }) => {
             },
           }}
         />
-        <button
-          className="btn btn-primary bg-blue-600 btn-sm mt-3 w-28"
-          type="submit"
-          disabled={!stripe || !clientSecret || loading}
-        >
-          <span className={loading ? `loading loading-spinner` : ""}>Pay</span>
-        </button>
+        <div className="w-full flex items-center justify-center">
+          <button
+            className="btn btn-primary bg-blue-600 btn-sm mt-3 w-28"
+            type="submit"
+            disabled={!stripe || !clientSecret || loading}
+          >
+            <span className={loading ? `loading loading-spinner` : ""}>
+              Pay
+            </span>
+          </button>
+        </div>
       </form>
       {error && <p className="text-red-500">{error}</p>}
       {tnxId && (

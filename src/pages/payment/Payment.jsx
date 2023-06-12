@@ -10,8 +10,10 @@ const Payment = () => {
 
   const price = parseFloat(amount);
   return (
-    <div>
-      This is payment
+    <div className="flex flex-col justify-center items-center h-full gap-12 bg-slate-100">
+      <div>
+        <h1 className="text-3xl text-center">Pay Now</h1>
+      </div>
       <Elements stripe={stripePromise}>
         <CheckOut _id={_id} id={id} price={price}></CheckOut>
       </Elements>
