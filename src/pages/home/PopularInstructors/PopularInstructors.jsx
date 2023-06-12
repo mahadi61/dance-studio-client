@@ -16,7 +16,7 @@ const PopularInstructors = () => {
   return (
     <div>
       <div className="text-center">
-        <h1 className="text-5xl text-[#1C222F] my-3">Popular Instructors</h1>
+        <h1 className="text-5xl text-[#F2BE22] my-3">Popular Instructors</h1>
       </div>
       <div className="grid lg:grid-cols-3 gap-6 mt-3">
         {popularInstructor.map((instructor) => (

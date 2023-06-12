@@ -8,7 +8,9 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <div className="w-11/12 mx-auto">
-        <PopularClasses></PopularClasses>
+        <div className="w-9/12 mx-auto">
+          <PopularClasses></PopularClasses>
+        </div>
         <PopularInstructors></PopularInstructors>
         <OurClasses></OurClasses>
       </div>

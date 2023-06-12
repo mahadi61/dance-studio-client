@@ -17,10 +17,10 @@ const PopularClasses = () => {
   return (
     <div className="my-10">
       <div className="text-center">
-        <h1 className="text-5xl mb-4">Popular Classes</h1>
+        <h1 className="text-5xl mb-4 text-[#F2BE22] ">Popular Classes</h1>
       </div>
       <div>
-        <div className="grid lg:grid-cols-4 gap-2">
+        <div className="grid lg:grid-cols-3 gap-2">
           {popularClass.map((cla, i) => (
             <div key={i}>
               <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
