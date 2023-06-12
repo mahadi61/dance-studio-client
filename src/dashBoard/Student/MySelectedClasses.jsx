@@ -13,7 +13,7 @@ const MySelectedClasses = () => {
     queryKey: ["selectedClass"],
     queryFn: async () => {
       const res = await axios.get(
-        `https://dance-studio-server-seven.vercel.app/my-selected-class/${user?.email}`
+        `http://localhost:5000/my-selected-class/${user?.email}`
       );
       return res.data;
     },
@@ -21,7 +21,7 @@ const MySelectedClasses = () => {
 
   const handleDelete = (id) => {
     const data = { id };
-    fetch("https://dance-studio-server-seven.vercel.app/delete-class", {
+    fetch("http://localhost:5000/delete-class", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment/moment";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
@@ -9,7 +10,7 @@ const PaymentHistory = () => {
     queryKey: ["enrolledClass"],
     queryFn: async () => {
       const res = await fetch(
-        `https://dance-studio-server-seven.vercel.app/my-enroll-class/${user?.email}`
+        `http://localhost:5000/my-enroll-class/${user?.email}`
       );
       return res.json();
     },
@@ -38,7 +39,7 @@ const PaymentHistory = () => {
                 <td>{cla?.className}</td>
                 <td>{cla?.paymentStatus}</td>
                 <td>${cla?.price}</td>
-                <td>{cla?.date}</td>
+                <td>{moment(cla?.date).format("MMM Do YY")}</td>
               </tr>
             ))}
           </tbody>

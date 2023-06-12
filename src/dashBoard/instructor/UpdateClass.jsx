@@ -10,7 +10,7 @@ const UpdateClass = () => {
   const [updateClassData, setUpdateClassData] = useState({});
 
   useEffect(() => {
-    fetch(`https://dance-studio-server-seven.vercel.app/updateClassData/${id}`)
+    fetch(`http://localhost:5000/updateClassData/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setUpdateClassData(data);
@@ -32,16 +32,13 @@ const UpdateClass = () => {
       price: data.price,
     };
 
-    fetch(
-      `https://dance-studio-server-seven.vercel.app/class/update-class-data/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateData),
-      }
-    )
+    fetch(`http://localhost:5000/class/update-class-data/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

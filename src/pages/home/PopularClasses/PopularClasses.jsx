@@ -7,9 +7,7 @@ const PopularClasses = () => {
   const { data: popularClass = [] } = useQuery({
     queryKey: ["popularClass"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://dance-studio-server-seven.vercel.app/popular-class`
-      );
+      const res = await axios.get(`http://localhost:5000/popular-class`);
       return res.data;
     },
   });
@@ -23,7 +21,7 @@ const PopularClasses = () => {
         <div className="grid lg:grid-cols-3 gap-2">
           {popularClass.map((cla, i) => (
             <div key={i}>
-              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+              <motion.div whileHover={{ scale: 1.2 }}>
                 <div className="rounded-lg card-compact bg-[#a75785] flex flex-col justify-between text-white h-[350px]">
                   <figure>
                     <img

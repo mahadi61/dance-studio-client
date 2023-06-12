@@ -6,16 +6,14 @@ const ManageUsers = () => {
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://dance-studio-server-seven.vercel.app/allUsers`
-      );
+      const res = await axios.get(`http://localhost:5000/allUsers`);
       return res.data;
     },
   });
 
   //   make role as an admin
   const handleMakeAdmin = (id) => {
-    fetch(`https://dance-studio-server-seven.vercel.app/users/admin/${id}`, {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -29,12 +27,9 @@ const ManageUsers = () => {
 
   //   make role as Instructor
   const handleMakeInstructor = (id) => {
-    fetch(
-      `https://dance-studio-server-seven.vercel.app/users/instructor/${id}`,
-      {
-        method: "PATCH",
-      }
-    )
+    fetch(`http://localhost:5000/users/instructor/${id}`, {
+      method: "PATCH",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

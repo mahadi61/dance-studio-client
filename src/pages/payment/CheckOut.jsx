@@ -15,14 +15,11 @@ const CheckOut = ({ _id, id, price }) => {
 
   useEffect(() => {
     if (price > 0) {
-      fetch(
-        "https://dance-studio-server-seven.vercel.app/payment-intent-for-class",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ price: price }),
-        }
-      )
+      fetch("http://localhost:5000/payment-intent-for-class", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price: price }),
+      })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret));
     }
@@ -88,7 +85,7 @@ const CheckOut = ({ _id, id, price }) => {
         date: new Date(),
       };
 
-      fetch("https://dance-studio-server-seven.vercel.app/class-payment", {
+      fetch("http://localhost:5000/class-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paymentInfo),
