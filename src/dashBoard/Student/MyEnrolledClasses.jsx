@@ -15,8 +15,6 @@ const MyEnrolledClasses = () => {
     },
   });
 
-  console.log(enrolledClass);
-
   return (
     <div className="py-5">
       <h1 className="my-3 text-4xl text-center">My Enrolled Classes</h1>

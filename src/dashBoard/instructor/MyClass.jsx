@@ -80,7 +80,9 @@ const MyClass = () => {
                     <FaEdit />
                   </Link>
                 </td>
-                <td>{singleClass?.feedback}</td>
+                <td>
+                  {singleClass?.status == "approved" || singleClass?.feedback}
+                </td>
               </tr>
             ))}
           </tbody>
