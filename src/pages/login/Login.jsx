@@ -59,7 +59,7 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-[url('https://i.ibb.co/Jrz4JX5/loginbg1.png')]">
-      <div className="justify-self-end w-full max-w-xl pe-8">
+      <div className="justify-self-end w-full max-w-xl lg:pe-8">
         <div>
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white">Login now!</h1>
@@ -82,7 +82,6 @@ const Login = () => {
             </label>
             <div className="join ">
               <input
-                defaultValue="12345A%"
                 className="input input-bordered join-item w-full"
                 type={typeStatus ? "text" : "password"}
                 {...register("password", { required: true })}
