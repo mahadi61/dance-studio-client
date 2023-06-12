@@ -41,7 +41,7 @@ const Registration = () => {
             .then(() => {
               const user = { name: name, email: email, photoUrl: photo };
               // save user info in database
-              fetch("http://localhost:5000/users", {
+              fetch("https://dance-studio-server-seven.vercel.app/users", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",

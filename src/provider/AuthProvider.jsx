@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
       // get jwt token and set token it into local storage
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://dance-studio-server-seven.vercel.app/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

@@ -12,7 +12,7 @@ const MyClass = () => {
     queryKey: ["allInstructor"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/instructor/${user?.email}`,
+        `https://dance-studio-server-seven.vercel.app/instructor/${user?.email}`,
         {
           headers: {
             authorization: `bearer ${token}`,
@@ -26,7 +26,9 @@ const MyClass = () => {
   const { data: enrolledClass = [] } = useQuery({
     queryKey: ["enrolledClass"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/total-enroll-class`);
+      const res = await fetch(
+        `https://dance-studio-server-seven.vercel.app/total-enroll-class`
+      );
       return res.json();
     },
   });

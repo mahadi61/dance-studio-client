@@ -17,7 +17,7 @@ const AddClass = () => {
     data.seats = Number(data.seats);
     data = { ...data, status: "pending", enrollStudent: 0 };
 
-    fetch("http://localhost:5000/addClass", {
+    fetch("https://dance-studio-server-seven.vercel.app/addClass", {
       method: "POST",
       headers: {
         "content-type": "application/json",
