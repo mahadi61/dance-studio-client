@@ -184,7 +184,7 @@ const ManageClasses = () => {
             value={"Send Feedback"}
           />
         </form>
-        <form method="dialog" className="modal-backdrop">
+        <form method="dialog" className="modal-bottom">
           <button>close</button>
         </form>
       </dialog>

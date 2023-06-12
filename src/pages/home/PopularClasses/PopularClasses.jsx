@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const PopularClasses = () => {
@@ -21,29 +22,34 @@ const PopularClasses = () => {
       <div>
         <div className="grid lg:grid-cols-4 gap-2">
           {popularClass.map((cla, i) => (
-            <div key={i} className="card-compact">
-              <figure>
-                <img
-                  className="h-[200px] w-[100%]"
-                  src={cla?.classPhoto}
-                  alt="dance"
-                />
-              </figure>
-              <div className="card-body ">
-                <h2 className="text-center text-2xl font-bold">
-                  {cla?.className}
-                </h2>
-                <div className="card-actions items-center justify-between">
-                  <p className="text-xl">Price: ${cla?.price}</p>
-                  <p className="text-xl">Available Seats: {cla?.seats}</p>
-                  <p className="text-xl">
-                    Instructor Name: {cla?.instructorName}
-                  </p>
-                  <Link to="/classes" className="btn btn-primary btn-sm">
-                    See Class
-                  </Link>
+            <div key={i}>
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <div className="rounded-lg card-compact bg-[#a75785] flex flex-col justify-between text-white h-[350px]">
+                  <figure>
+                    <img
+                      className="h-[200px] w-[100%] rounded-lg"
+                      src={cla?.classPhoto}
+                      alt="dance"
+                    />
+                  </figure>
+                  {console.log(cla)}
+                  <div className="card-body ">
+                    <h2 className="text-xl font-bold">{cla?.className}</h2>
+                    <div className="card-actions flex-col">
+                      <div className="flex justify-between w-full">
+                        <p className="font-bold">Price: ${cla?.price}</p>
+                        <p className="">Available Seats: {cla?.seats}</p>
+                      </div>
+                      <div className="flex justify-between w-full">
+                        <p className="">Instructor: {cla?.instructorName}</p>
+                        <Link to="/classes" className="btn btn-primary btn-sm">
+                          See Class
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

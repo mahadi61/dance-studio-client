@@ -47,10 +47,10 @@ const OurClasses = () => {
           <img src="https://kevsbest.com/wp-content/uploads/2021/01/5-Best-Dance-Instructors-in-Phoenix.png" />
         </SwiperSlide>
         <SwiperSlide style={{ width: "400px", height: "" }}>
-          <img src="https://thumbs.dreamstime.com/b/street-style-stylish-men-women-dancing-hip-hop-casual-youth-clothes-gradient-purple-pink-background-dance-hall-229827720.jpg" />
+          <img src="https://media.istockphoto.com/id/503870586/photo/young-male-professional-dancer-dancing-in-studio.jpg?s=612x612&w=0&k=20&c=yt41J0Mp-erHsyYdRVd26xwP7XPz6BwfXFGoGBiJgtY=" />
         </SwiperSlide>
         <SwiperSlide style={{ width: "400px", height: "" }}>
-          <img src="https://thumbs.dreamstime.com/b/doing-your-best-personal-achievement-goal-man-dancing-grey-background-doing-your-best-personal-achievement-goal-man-dancing-244366682.jpg" />
+          <img src="https://origin.go.gq.com.au/wp-content/uploads/2019/09/main2.jpg" />
         </SwiperSlide>
         <SwiperSlide style={{ width: "400px", height: "" }}>
           <img src="https://static.wixstatic.com/media/9e81d1_08cc972d5e424ba3810f25921711e454~mv2.jpg/v1/fill/w_640,h_474,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/9e81d1_08cc972d5e424ba3810f25921711e454~mv2.jpg" />

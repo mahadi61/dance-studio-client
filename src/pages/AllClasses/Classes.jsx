@@ -59,38 +59,38 @@ const Classes = () => {
           {allClass.map((cla, i) => (
             <div
               key={i}
-              className={`card-compact ${
-                cla?.seats == 0 ? "bg-red-500" : "bg-base-100"
+              className={`rounded-lg card-compact  flex flex-col justify-between text-white h-[350px] ${
+                cla?.seats == 0 ? "bg-red-500" : "bg-[#ff81c8aa]"
               } `}
             >
               <figure>
                 <img
-                  className="h-[200px] w-[100%]"
+                  className="h-[200px] w-[100%] rounded-lg"
                   src={cla.classPhoto}
                   alt="dance"
                 />
               </figure>
               <div className="card-body ">
-                <h2 className="text-center text-2xl font-bold">
-                  {cla?.className}
-                </h2>
-                <div className="card-actions items-center justify-between">
-                  <p className="text-xl">Price: ${cla?.price}</p>
-                  <p className="text-xl">Available Seats: {cla?.seats}</p>
-                  <p className="text-xl">
-                    Instructor Name: {cla?.instructorName}
-                  </p>
-                  <button
-                    disabled={
-                      (cla?.seats == 0 && true) ||
-                      (loggedInUser?.role == "admin" && true) ||
-                      (loggedInUser?.role == "instructor" && true)
-                    }
-                    onClick={() => handleEnroll(cla?._id)}
-                    className="btn btn-primary btn-sm"
-                  >
-                    Enroll Class
-                  </button>
+                <h2 className="text-xl font-bold">{cla?.className}</h2>
+                <div className="card-actions flex-col">
+                  <div className="flex justify-between w-full">
+                    <p className="font-bold">Price: ${cla?.price}</p>
+                    <p className="">Available Seats: {cla?.seats}</p>
+                  </div>
+                  <div className="flex justify-between w-full">
+                    <p className="">Instructor: {cla?.instructorName}</p>
+                    <button
+                      disabled={
+                        (cla?.seats == 0 && true) ||
+                        (loggedInUser?.role == "admin" && true) ||
+                        (loggedInUser?.role == "instructor" && true)
+                      }
+                      onClick={() => handleEnroll(cla?._id)}
+                      className="btn btn-primary btn-sm"
+                    >
+                      Enroll Class
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
