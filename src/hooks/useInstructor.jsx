@@ -11,7 +11,7 @@ const useInstructor = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/allUsers/instructor/${user?.email}`
+        `https://dance-studio-server-seven.vercel.app/allUsers/instructor/${user?.email}`
       );
 
       return res.data.instructor;

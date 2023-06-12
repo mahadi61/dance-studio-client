@@ -9,7 +9,7 @@ const PaymentHistory = () => {
     queryKey: ["enrolledClass"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/my-enroll-class/${user?.email}`
+        `https://dance-studio-server-seven.vercel.app/my-enroll-class/${user?.email}`
       );
       return res.json();
     },

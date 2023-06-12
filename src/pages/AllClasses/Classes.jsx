@@ -10,12 +10,16 @@ const Classes = () => {
   const navigate = useNavigate();
 
   const { data: allClass = [], refetch } = useQuery(["allClass"], async () => {
-    const res = await axios.get("http://localhost:5000/classes");
+    const res = await axios.get(
+      "https://dance-studio-server-seven.vercel.app/classes"
+    );
     return res.data;
   });
 
   const { data: allUsers = [] } = useQuery(["allUsers"], async () => {
-    const res = await axios.get("http://localhost:5000/allUsers");
+    const res = await axios.get(
+      "https://dance-studio-server-seven.vercel.app/allUsers"
+    );
     return res.data;
   });
 
@@ -30,7 +34,7 @@ const Classes = () => {
 
     const enrollData = { classId: id, enrolledBy: user.email };
 
-    fetch(`http://localhost:5000/enroll-class`, {
+    fetch(`https://dance-studio-server-seven.vercel.app/enroll-class`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

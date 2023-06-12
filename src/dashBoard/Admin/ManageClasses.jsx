@@ -9,15 +9,20 @@ const ManageClasses = () => {
   const { data: allClass = [], refetch } = useQuery({
     queryKey: ["allClass"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/admin/allClasses`);
+      const res = await axios.get(
+        `https://dance-studio-server-seven.vercel.app/admin/allClasses`
+      );
       return res.data;
     },
   });
 
   const handleApproved = (id) => {
-    fetch(`http://localhost:5000/approved-classes/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://dance-studio-server-seven.vercel.app/approved-classes/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -28,7 +33,7 @@ const ManageClasses = () => {
   };
 
   const handleDenied = (id) => {
-    fetch(`http://localhost:5000/denied-classes/${id}`, {
+    fetch(`https://dance-studio-server-seven.vercel.app/denied-classes/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -54,7 +59,7 @@ const ManageClasses = () => {
       message,
     };
 
-    fetch(`http://localhost:5000/feedback`, {
+    fetch(`https://dance-studio-server-seven.vercel.app/feedback`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

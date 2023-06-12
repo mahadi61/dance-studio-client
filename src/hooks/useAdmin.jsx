@@ -11,7 +11,7 @@ const useAdmin = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/allUsers/admin/${user?.email}`
+        `https://dance-studio-server-seven.vercel.app/allUsers/admin/${user?.email}`
       );
 
       return res.data.admin;

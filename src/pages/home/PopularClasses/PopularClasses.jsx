@@ -6,7 +6,9 @@ const PopularClasses = () => {
   const { data: popularClass = [] } = useQuery({
     queryKey: ["popularClass"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/popular-class`);
+      const res = await axios.get(
+        `https://dance-studio-server-seven.vercel.app/popular-class`
+      );
       return res.data;
     },
   });
