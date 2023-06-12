@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext } from "react";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -7,14 +6,20 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const MyClass = () => {
   const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("access-token");
 
   const { data: instructorClass = [] } = useQuery({
     queryKey: ["allInstructor"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://dance-studio-server-seven.vercel.app/instructor/${user?.email}`
+      const res = await fetch(
+        `https://dance-studio-server-seven.vercel.app/instructor/${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+        }
       );
-      return res.data;
+      return res.json();
     },
   });
 

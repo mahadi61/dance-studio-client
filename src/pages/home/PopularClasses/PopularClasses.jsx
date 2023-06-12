@@ -32,7 +32,6 @@ const PopularClasses = () => {
                       alt="dance"
                     />
                   </figure>
-                  {console.log(cla)}
                   <div className="card-body ">
                     <h2 className="text-xl font-bold">{cla?.className}</h2>
                     <div className="card-actions flex-col">

@@ -1,19 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const ManageClasses = () => {
   const [feedbackId, setFeedbackId] = useState("");
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("access-token");
 
   const { data: allClass = [], refetch } = useQuery({
     queryKey: ["allClass"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://dance-studio-server-seven.vercel.app/admin/allClasses`
+      const res = await fetch(
+        `https://dance-studio-server-seven.vercel.app/admin/allClasses/${user.email}`,
+        {
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+        }
       );
-      return res.data;
+      return res.json();
     },
   });
 
